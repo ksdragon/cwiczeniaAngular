@@ -13,10 +13,11 @@ export class AppComponent {
 
   approvedTask(task: Task){
     this.listApprovedTak.push(task);
+    this.listTasks = this.listTasks.filter( e => e !== task);
   }
 
   addTask(inputVal: string){
-    let newTask = new Task(inputVal, false);
+    const newTask: Task = ({title:inputVal,statusTask: false});
     this.listTasks.push(newTask);
     this.inputValue = '';
   }
@@ -33,5 +34,5 @@ export class AppComponent {
 }
 
 class Task {
-  constructor(public title: string, public statusTask: boolean){};
+  constructor(public title: string, public statusTask: boolean){}
 }
