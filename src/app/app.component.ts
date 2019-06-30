@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,9 @@ export class AppComponent {
   inputValue;
   listTasks: Task[] = [];
   listApprovedTak: Task[] = [];
+
+  // @Output() emitListTasks = new EventEmitter<Task[]>();
+  // @Output() emitListApprovedTasks = new EventEmitter<Task[]>();
 
   approvedTask(task: Task){
     this.listApprovedTak.push(task);
@@ -33,6 +36,6 @@ export class AppComponent {
 
 }
 
-class Task {
+export class Task {
   constructor(public title: string, public statusTask: boolean){}
 }
