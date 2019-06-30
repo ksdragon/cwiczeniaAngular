@@ -1,0 +1,12 @@
+<div (emitListTasks)=newlistTasks($event)>
+  <ul *ngIf="listTasks.length > 0; else taskEmpty">
+    <li *ngFor="let task of listTasks; let i = index">
+       {{task.title}}
+      <button (click)="deleteTask(i)" >Usuń</button>
+      <button (click)="approvedTask(task)" >Zrobione</button>
+    </li>
+  </ul>
+</div>
+<ng-template #taskEmpty>
+  <p>Brak zadań, dodaj zadania</p>
+</ng-template>

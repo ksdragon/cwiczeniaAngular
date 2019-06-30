@@ -1,0 +1,11 @@
+<div class="myBtn">
+    <input [(ngModel)]="inputValue">
+    <button
+      [disabled]="inputValue === ''"
+      (click)="addTask(inputValue)"
+      >Dodaj</button>
+</div>
+
+
+<!-- lub tak
+[disabled]="!inputValue" -->
