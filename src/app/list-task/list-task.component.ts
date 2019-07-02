@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../app.component';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-list-task',
@@ -8,8 +9,12 @@ import { Task } from '../app.component';
 })
 export class ListTaskComponent implements OnInit {
 
-  @Input() listApprovedTak: Task[];
-  constructor() { }
+  listApprovedTak: Task[];
+  constructor(private tasksService: TasksService) { 
+    tasksService.listAprrovedTasksOb.subscribe((tasks: Task[]) => {
+      this.listApprovedTak = tasks;
+    });
+  }
 
   ngOnInit() {
   }

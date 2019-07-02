@@ -1,21 +1,16 @@
-<div>
+<!-- <div> -->
 <div class="myContent">
-  <app-header
-    (emitInputValue)=addTask($event)
-    ></app-header>
+  <app-header></app-header>
 </div>
   <br>
   <div class="myContent">
-    <app-list-planned-task
-      [listTasks]="listTasks"
-      (emitSelectedItem)=deleteTask($event)
-      (emitTaskApproved)="approvedTask($event)"></app-list-planned-task>
-      <app-list-task [listApprovedTak]="listApprovedTak"></app-list-task>
+    <app-list-planned-task></app-list-planned-task>
+      <app-list-task></app-list-task>
 
   </div>
-  <hr>
-<app-klikacz></app-klikacz>
-Suma kliknięć: {{allClicks }}
-</div>
+  <!-- <hr> -->
+<!-- <app-klikacz></app-klikacz>
+Suma kliknięć: {{allClicks }} -->
+<!-- </div> -->
 
 

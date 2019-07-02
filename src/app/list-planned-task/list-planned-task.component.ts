@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../app.component';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-list-planned-task',
@@ -8,11 +9,14 @@ import { Task } from '../app.component';
 })
 export class ListPlannedTaskComponent implements OnInit {
 
-  @Input() listTasks: Task [] = [];
-  @Output() emitSelectedItem = new EventEmitter<number>();
-  @Output() emitTaskApproved = new EventEmitter<Task>();
+  listTasks: Task [] = [];
+  
 
-  constructor() { }
+  constructor(private tasksService: TasksService) {
+    tasksService.listTasksOb.subscribe((tasks: Task[]) => {
+      this.listTasks = tasks;
+    });
+   }
 
   ngOnInit() {
   }
@@ -22,10 +26,10 @@ export class ListPlannedTaskComponent implements OnInit {
   }
 
   deleteTask(i: number){
-    this.emitSelectedItem.emit(i);
+    this.tasksService.deleteTask(i);
   }
 
   approvedTask(task: Task){
-    this.emitTaskApproved.emit(task);
+    this.tasksService.approvedTask(task);
   }
 }

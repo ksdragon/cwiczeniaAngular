@@ -11,16 +11,15 @@ export class AppComponent implements OnInit{
   constructor(private clickService: ClickService){}
 
   title = 'addTasks';
-  inputValue;
-  listTasks: Task[] = [];
-  listApprovedTak: Task[] = [];
+  // listTasks: Task[] = [];
+  // listApprovedTak: Task[] = [];
   allClicks: number;
 
   ngOnInit(): void {
-   this.listTasks = [{title: 'Sprzątanie', statusTask: false},
-                    {title: 'Prasowanie', statusTask: false},
-                    {title: 'Gotowanie', statusTask: false},
-                    {title: 'Zakupy', statusTask: false}];
+  //  this.listTasks = [{title: 'Sprzątanie', statusTask: false},
+  //                   {title: 'Prasowanie', statusTask: false},
+  //                   {title: 'Gotowanie', statusTask: false},
+  //                   {title: 'Zakupy', statusTask: false}];
     // obsługa serwisu
    this.clickService.getSum().subscribe(clicks => {
       this.allClicks = clicks;
@@ -30,25 +29,25 @@ export class AppComponent implements OnInit{
   // @Output() emitListTasks = new EventEmitter<Task[]>();
   // @Output() emitListApprovedTasks = new EventEmitter<Task[]>();
 
-  approvedTask(task: Task){
-    this.listApprovedTak.push(task);
-    this.listTasks = this.listTasks.filter( e => e !== task);
-  }
+  // approvedTask(task: Task){
+  //   this.listApprovedTak.push(task);
+  //   this.listTasks = this.listTasks.filter( e => e !== task);
+  // }
 
-  addTask(inputVal: string){
-    const newTask: Task = ({title:inputVal,statusTask: false});
-    this.listTasks.push(newTask);
-    this.inputValue = '';
-  }
+  // addTask(inputVal: string){
+  //   const newTask: Task = ({title:inputVal,statusTask: false});
+  //   this.listTasks.push(newTask);
 
-  deleteTask(index: number){
-    this.listTasks.splice(index, 1);
-  }
+  // }
 
-  // inna metoda usuwania przez metode filter
-  remove(task: Task){
-    this.listTasks = this.listTasks.filter( e => e !== task);
-  }
+  // deleteTask(index: number){
+  //   this.listTasks.splice(index, 1);
+  // }
+
+  // // inna metoda usuwania przez metode filter
+  // remove(task: Task){
+  //   this.listTasks = this.listTasks.filter( e => e !== task);
+  // }
 
 }
 
