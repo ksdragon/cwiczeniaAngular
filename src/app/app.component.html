@@ -10,9 +10,12 @@
       [listTasks]="listTasks"
       (emitSelectedItem)=deleteTask($event)
       (emitTaskApproved)="approvedTask($event)"></app-list-planned-task>
-
       <app-list-task [listApprovedTak]="listApprovedTak"></app-list-task>
 
   </div>
-
+  <hr>
+<app-klikacz></app-klikacz>
+Suma kliknięć: {{allClicks }}
 </div>
+
+

@@ -17,6 +17,10 @@ export class ListPlannedTaskComponent implements OnInit {
   ngOnInit() {
   }
 
+  getColor(): string {
+    return this.listTasks.length >= 5 ? 'red' : 'green';
+  }
+
   deleteTask(i: number){
     this.emitSelectedItem.emit(i);
   }
