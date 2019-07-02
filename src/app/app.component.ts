@@ -1,5 +1,4 @@
 import { ClickService } from './services/click.service';
-
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
