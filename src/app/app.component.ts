@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   // listTasks: Task[] = [];
   // listApprovedTak: Task[] = [];
   allClicks: number;
+  
 
   ngOnInit(): void {
   //  this.listTasks = [{title: 'Sprzątanie', statusTask: false},
@@ -49,8 +50,4 @@ export class AppComponent implements OnInit{
   //   this.listTasks = this.listTasks.filter( e => e !== task);
   // }
 
-}
-
-export class Task {
-  constructor(public title: string, public statusTask: boolean){}
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from '../app.component';
 import { TasksService } from '../services/tasks.service';
+import { Task } from '../model/task';
 
 @Component({
   selector: 'app-list-planned-task',
@@ -14,7 +14,9 @@ export class ListPlannedTaskComponent implements OnInit {
 
   constructor(private tasksService: TasksService) {
     tasksService.listTasksOb.subscribe((tasks: Task[]) => {
-      this.listTasks = tasks;
+      this.listTasks = tasks.slice();  
+      //slice zwraca nową listę z nową referencją ważne przy pipe sortName
+      // nie trzeba zmieniac właściwości pure 
     });
    }
 
@@ -30,6 +32,7 @@ export class ListPlannedTaskComponent implements OnInit {
   }
 
   approvedTask(task: Task){
+    task.endDate = new Date();
     this.tasksService.approvedTask(task);
   }
 }

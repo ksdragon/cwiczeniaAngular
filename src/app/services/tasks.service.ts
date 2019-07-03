@@ -1,6 +1,7 @@
-import { Task } from './../app.component';
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Task } from '../model/task';
 
 
 @Injectable({
@@ -15,10 +16,10 @@ export class TasksService {
   allClicks: number;
 
 constructor(){
-   this.listTasks = [{title: 'Sprzątanie', statusTask: false},
-                    {title: 'Prasowanie', statusTask: false},
-                    {title: 'Gotowanie', statusTask: false},
-                    {title: 'Zakupy', statusTask: false}]; 
+   this.listTasks = [{title: 'Sprzątanie', statusTask: false, dateCreated: new Date()},
+                    {title: 'Prasowanie', statusTask: false, dateCreated: new Date()},
+                    {title: 'Gotowanie', statusTask: false, dateCreated: new Date() },
+                    {title: 'Zakupy', statusTask: false, dateCreated: new Date()}]; 
     this.listTasksOb.next(this.listTasks);
   }
 
@@ -33,7 +34,7 @@ constructor(){
   }
 
   addTask(inputVal: string){
-    const newTask: Task = ({title:inputVal,statusTask: false});
+    const newTask: Task = ({title:inputVal,statusTask: false, dateCreated: new Date()});
     this.listTasks.push(newTask);    
     this.listTasksOb.next(this.listTasks);
   }

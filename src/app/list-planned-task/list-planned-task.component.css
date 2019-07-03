@@ -1,6 +1,7 @@
 li {
-  /* width: 300px; */
+  width: 300px;
   background: lightgray;
+  margin: 5px;
 }
 
 .odd-li {
