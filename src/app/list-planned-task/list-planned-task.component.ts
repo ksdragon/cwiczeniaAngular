@@ -14,7 +14,7 @@ export class ListPlannedTaskComponent implements OnInit {
 
   constructor(private tasksService: TasksService) {
     tasksService.listTasksOb.subscribe((tasks: Task[]) => {
-      this.listTasks = tasks.slice();  
+      this.listTasks = tasks.slice().filter(t => t.statusTask === false);  
       //slice zwraca nową listę z nową referencją ważne przy pipe sortName
       // nie trzeba zmieniac właściwości pure 
     });
@@ -31,8 +31,7 @@ export class ListPlannedTaskComponent implements OnInit {
     this.tasksService.deleteTask(i);
   }
 
-  approvedTask(task: Task){
-    task.endDate = new Date().toLocaleString();
+  approvedTask(task: Task){    
     this.tasksService.approvedTask(task);
   }
 }

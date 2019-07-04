@@ -11,8 +11,8 @@ export class ListTaskComponent implements OnInit {
 
   listApprovedTak: Task[];
   constructor(private tasksService: TasksService) { 
-    tasksService.listAprrovedTasksOb.subscribe((tasks: Task[]) => {
-      this.listApprovedTak = tasks;
+    tasksService.listTasksOb.subscribe((tasks: Task[]) => {
+      this.listApprovedTak = tasks.filter(t => t.statusTask === true);
     });
   }
 
