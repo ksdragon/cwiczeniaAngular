@@ -1,6 +1,7 @@
 export interface Task{
-    title: string;
-    statusTask: boolean;
-    dateCreated?: Date;
-    endDate? :Date
+    _id?: {$oid: string};    
+    title?: string;
+    statusTask?: boolean;
+    dateCreated?: string;
+    endDate? : string;
 }

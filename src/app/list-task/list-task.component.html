@@ -1,7 +1,7 @@
 <div>
   <p>Wykonanych zadań : {{listApprovedTak.length}} </p>
   <ul>
-    <li appChecked appDate [date]="item.endDate | date" *ngFor="let item of listApprovedTak" >
+    <li appChecked appDate [date]="item.endDate" *ngFor="let item of listApprovedTak" >
       {{ item.title | transformTask: ' -super!'}}
     </li>
   </ul>

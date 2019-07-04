@@ -32,7 +32,7 @@ export class ListPlannedTaskComponent implements OnInit {
   }
 
   approvedTask(task: Task){
-    task.endDate = new Date();
+    task.endDate = new Date().toLocaleString();
     this.tasksService.approvedTask(task);
   }
 }

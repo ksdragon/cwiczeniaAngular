@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-http',
@@ -8,15 +9,20 @@ import { HttpService } from '../services/http.service';
 })
 export class HttpComponent implements OnInit {
 
+  
+  allPost$: Observable<Array<Post>>;
+  
   constructor(private httpService: HttpService) { }
 
   ngOnInit() {
   }
 
   getPosts(){
-    this.httpService.getPosts().subscribe(posts =>{
-      console.log(posts);
-    });
+    // this.httpService.getPosts().subscribe(posts =>{
+    //   console.log(posts);
+    // });
+    //this.allPost$ = this.httpService.getPosts();
+    this.allPost$ = this.httpService.posts$;
   }
 
 
@@ -46,15 +52,32 @@ export class HttpComponent implements OnInit {
   });
 }
 
-  deletePost(){}
+  deletePost(){
+    this.httpService.deletePost(1).subscribe(post => {
+      console.log(post);
+    });
+  }
 
-  updatePost(){}
+  updatePost(){
+    const p: Post = ({
+      id: 1,
+      userID: 1,
+      body: 'zmieniam tylko wpis',
+      title: 'zapytanie put'
+    });
+    this.httpService.updatePost(p).subscribe(post => {
+      console.log(post);
+    })
+  }
 
   changePost(){
     const p: Post = ({
       id: 1,
-      body: 'zmieniam tylko wpis'
-    }) 
+      body: 'zapytanie patch'
+    });
+    this.httpService.changePost(p).subscribe(post => {
+      console.log(post);
+    }); 
   }
 }
 

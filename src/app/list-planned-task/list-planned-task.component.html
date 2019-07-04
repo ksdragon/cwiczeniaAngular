@@ -1,7 +1,7 @@
 <ng-container *ngIf="listTasks.length > 0; else taskEmpty">
   <p [ngStyle]="{color: getColor() }">Zadnia do wykonania:  {{listTasks.length}} </p>
   <ul >
-    <li appDate [date]="task.dateCreated | date" *ngFor="let task of listTasks | sortName; let i = index; let odd = odd"
+    <li appDate [date]="task.dateCreated" *ngFor="let task of listTasks | sortName; let i = index; let odd = odd"
       [ngClass]="{'odd-li': odd, 'last-li': listTasks.length === 1}">
       {{ task.title | transformTask: '!'}} 
       <button class="btn btn-primary" [ngStyle]="{margin: '10px'}" (click)="deleteTask(i)" >Usuń</button>

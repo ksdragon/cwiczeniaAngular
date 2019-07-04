@@ -16,10 +16,10 @@ export class TasksService {
   allClicks: number;
 
 constructor(){
-   this.listTasks = [{title: 'Sprzątanie', statusTask: false, dateCreated: new Date()},
-                    {title: 'Prasowanie', statusTask: false, dateCreated: new Date()},
-                    {title: 'Gotowanie', statusTask: false, dateCreated: new Date() },
-                    {title: 'Zakupy', statusTask: false, dateCreated: new Date()}]; 
+   this.listTasks = [{title: 'Sprzątanie', statusTask: false, dateCreated: new Date().toLocaleString()},
+                    {title: 'Prasowanie', statusTask: false, dateCreated: new Date().toLocaleString()},
+                    {title: 'Gotowanie', statusTask: false, dateCreated: new Date().toLocaleString() },
+                    {title: 'Zakupy', statusTask: false, dateCreated: new Date().toLocaleString()}]; 
     this.listTasksOb.next(this.listTasks);
   }
 
@@ -34,7 +34,7 @@ constructor(){
   }
 
   addTask(inputVal: string){
-    const newTask: Task = ({title:inputVal,statusTask: false, dateCreated: new Date()});
+    const newTask: Task = ({title:inputVal,statusTask: false, dateCreated: new Date().toLocaleString()});
     this.listTasks.push(newTask);    
     this.listTasksOb.next(this.listTasks);
   }

@@ -8,3 +8,5 @@
 <button class="btn btn-primary"(click)="deletePost()">deletePost</button>
 <button class="btn btn-primary"(click)="changePost()">changePost</button>
 </div>
+
+<div *ngFor="let item of allPost$ | async">{{item.title}}</div>
