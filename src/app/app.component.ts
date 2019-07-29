@@ -1,5 +1,6 @@
 import { ClickService } from './services/click.service';
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { HttpMongoService } from './services/http-mongo.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
   providers: [ClickService]
 })
 export class AppComponent implements OnInit{
-  constructor(private clickService: ClickService){}
+  constructor(private clickService: ClickService, private httpMongoService: HttpMongoService){}
+
+    conectionTest(){
+      this.httpMongoService.connectonToDB();
+  }
 
   title = 'addTasks';
   // listTasks: Task[] = [];
