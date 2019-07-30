@@ -13,7 +13,13 @@ import { DateDirective } from './shered/date.directive';
 import { TransformTaskPipe } from './shered/transform-task.pipe';
 import { SortNamePipe } from './shered/sort-name.pipe';
 import { HttpComponent } from './http/http.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { CustomPipeComponent } from './custom-pipe/custom-pipe.component';
+import { ShortenPipe } from './shered/shorten.pipe';
+import { FilterPipe } from './shered/filter.pipe';
+import { ReversePipe } from './shered/reverse.pipe';
+import { SortPipe } from './shered/sort.pipe';
+import { HttpStartComponent } from './http-start/http-start.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,13 @@ import { HttpClientModule } from '@angular/common/http'
     DateDirective,
     TransformTaskPipe,
     SortNamePipe,
-    HttpComponent
+    HttpComponent,
+    CustomPipeComponent,
+    ShortenPipe,
+    FilterPipe,
+    ReversePipe,
+    SortPipe,
+    HttpStartComponent
   ],
   imports: [
     FormsModule,
