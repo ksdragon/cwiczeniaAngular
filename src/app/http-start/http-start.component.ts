@@ -1,27 +1,42 @@
 import { PostService } from './../services/post.service';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Post } from '../model/post.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-http-start',
   templateUrl: './http-start.component.html',
   styleUrls: ['./http-start.component.css']
 })
-export class HttpStartComponent implements OnInit {
-  loadedPosts = [];
-  isFetching = false;
+export class HttpStartComponent implements OnInit, OnDestroy {
 
-  constructor(private http: HttpClient,
-              private postService: PostService) { }
+  loadedPosts = [];
+  // włściwość do pokazywania ładowania zawartości (Loading...)
+  isFetching = false;
+  // obsługa błędów (w szablonie)
+  error = null;
+  // wyrejstrowanie zmiennej typu Subject.
+  private errorSubscribe: Subscription;
+
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    // obsluga błędów przez Subject i postService
+    this.errorSubscribe = this.postService.error.subscribe(
+      errorMessage => {
+        this.error = errorMessage;
+      }
+    );
     this.FetchPosts();
   }
 
+  ngOnDestroy(): void {
+    this.errorSubscribe.unsubscribe();
+  }
+
   onCreatePost(postData: Post) {
-    // Send Http request
-    this.postService.crateAndStorePost(postData.title, postData.content);
+    // Send Http request i dodanie do tablicy
+    this.loadedPosts.push(this.postService.crateAndStorePost(postData.title, postData.content));
   }
 
   onFetchPosts() {
@@ -40,12 +55,20 @@ export class HttpStartComponent implements OnInit {
 
   private FetchPosts() {
     this.isFetching = true;
-    this.postService.fetchPost().subscribe(
+    this.postService.fetchPosts().subscribe(
       (responseData) => {
         this.loadedPosts = responseData;
         this.isFetching = false;
       }
+      // jeden ze sposobów obsługi błędów.
+      , error => {
+        this.isFetching = false;
+        this.error = error.message;
+      }
     );
   }
 
+  onHandleError() {
+    this.error = null;
+  }
 }

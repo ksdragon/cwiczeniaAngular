@@ -16,7 +16,7 @@ export class HttpService {
     this.getPosts();
    }
 
-  getPosts() { //: Observable<HttpResponse<Response>>
+  getPosts() { // : Observable<HttpResponse<Response>>
     this.http.get<Array<Post>>('https://jsonplaceholder.typicode.com/posts/').subscribe(
       posts => {
         this.postsList.next(posts);
@@ -31,30 +31,30 @@ export class HttpService {
     //   {observe: 'response'});
 
   }
-  getPost(id: number): Observable<Post>{
+  getPost(id: number): Observable<Post> {
     return this.http.get<Post>('https://jsonplaceholder.typicode.com/posts/' + id);
   }
 
 
-  getPostByUser(userId: string): Observable<Array<Post>>{
+  getPostByUser(userId: string): Observable<Array<Post>> {
     const param = new HttpParams().set('userId', userId);
     return this.http.get<Array<Post>>('https://jsonplaceholder.typicode.com/posts', {params: param});
   }
-  
-  addPost(post: Post): Observable<Post> {    
-    return this.http.post<Post>('https://jsonplaceholder.typicode.com/posts',post);
+
+  addPost(post: Post): Observable<Post> {
+    return this.http.post<Post>('https://jsonplaceholder.typicode.com/posts', post);
   }
 
-  deletePost(id: number): Observable<Post>{
+  deletePost(id: number): Observable<Post> {
     return this.http.delete<Post>('https://jsonplaceholder.typicode.com/posts/' + id);
   }
 
-  updatePost(post: Post): Observable<Post>{
+  updatePost(post: Post): Observable<Post> {
     return this.http.put<Post>
       ('https://jsonplaceholder.typicode.com/posts/' + post.id, post);
   }
 
-  changePost(post: Post): Observable<Post>{
+  changePost(post: Post): Observable<Post> {
     return this.http.patch<Post>
       ('https://jsonplaceholder.typicode.com/posts/' + post.id, post);
      }

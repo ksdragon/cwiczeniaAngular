@@ -1,3 +1,5 @@
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { LoggingInterceptorService } from './services/logging-interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -13,7 +15,7 @@ import { DateDirective } from './shered/date.directive';
 import { TransformTaskPipe } from './shered/transform-task.pipe';
 import { SortNamePipe } from './shered/sort-name.pipe';
 import { HttpComponent } from './http/http.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomPipeComponent } from './custom-pipe/custom-pipe.component';
 import { ShortenPipe } from './shered/shorten.pipe';
 import { FilterPipe } from './shered/filter.pipe';
@@ -48,7 +50,18 @@ import { HttpStartComponent } from './http-start/http-start.component';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

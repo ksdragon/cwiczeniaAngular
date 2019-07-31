@@ -10,15 +10,15 @@ export class ClickService {
   private sumClick = 0;
   private sum = new Subject<number>();
 
-  addClicks(){
+  addClicks() {
     this.sumClick++;
     this.sum.next(this.sumClick);
     // console.log('Suma: ');
     // console.log(this.sumClick);
-    this.log.logger("Kliknięcie");
+    this.log.logger('Kliknięcie');
   }
 
-  getSum(): Observable<number>{
+  getSum(): Observable<number> {
     return this.sum.asObservable();
   }
 
